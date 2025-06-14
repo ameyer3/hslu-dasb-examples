@@ -252,7 +252,7 @@ ggplot(mod_diam_2_resid, aes(log(carat), delta_log)) +  geom_hex(bins = 50)
 
 #let's analyze the residuals of this model, wrt the other variables
 ggplot(mod_diam_2_resid, aes(cut, delta_log)) + geom_boxplot()
-# ggplot(mod_diam_2_resid, aes(cut, delta_log)) + geom_jitter()
+ggplot(mod_diam_2_resid, aes(cut, delta_log)) + geom_jitter()
 ggplot(mod_diam_2_resid, aes(color, delta_log)) + geom_boxplot()
 ggplot(mod_diam_2_resid, aes(clarity, delta_log)) + geom_boxplot()
 ggplot(mod_diam_2_resid, aes(depth, delta_log)) + geom_point()

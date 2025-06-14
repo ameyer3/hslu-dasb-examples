@@ -4,11 +4,12 @@ View(mpg)
 
 table(mpg$year)
 
+# Shows hwy in histogram, y is amount of entries for each hwy
 plot <- ggplot(data = mpg, mapping = aes(x = mpg$hwy)) + 
   geom_histogram() + 
   facet_wrap(~year)
-
 (plot + facet_grid(cyl~drv))
+
   
   
 plot <- ggplot(data = mpg, mapping = aes(x = mpg$hwy))  
@@ -85,3 +86,9 @@ ggplot(diamonds, aes(x=carat, y=price, color=cut)) +
   scale_y_continuous(breaks=c(0,5000,10000,15000,17500),
                      labels=c(0,5,10,15,17.5),
                      name="price(thousands of dollars)")
+
+# geom bar usually aggregates by default
+# geom col doesn't. When we use stat=identiy we imitate geom col
+# so we have to give the y's ourselves as we stop autoamtic aggregation
+ggplot(diamonds, aes(x=carat, y=price)) +
+geom_bar(stat="identity")

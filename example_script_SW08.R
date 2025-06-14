@@ -17,13 +17,14 @@ help(Boston)
 Boston.corr <- cor(Boston)
 
 palette = colorRampPalette(c("green", "white", "red")) (20)
+# Correlation matrix
 heatmap(x = Boston.corr, col = palette, symm = TRUE)
 
 #we concentrate on the "medv" as output for the regression
 correlation <- Boston.corr[,'medv']
 col <- colnames(Boston.corr)  
 medv.corr <- tibble(col, correlation)
-
+medv.corr
 ggplot(data=medv.corr) + geom_point(aes(x=col, y=correlation)) + geom_hline(yintercept=0, color="blue", size=2)
 
 #strating with the most correlated variable as predictor
@@ -31,6 +32,7 @@ lm1 <- lm(medv~lstat,data=Boston)
 
 lm1
 summary(lm1)
+# plots a summary as scatterlpot with regression line
 par(mfrow=c(2,2)); plot(lm1); par(mfrow=c(1,1))
 
 ggplot() + geom_point(data=Boston, aes(x=lstat, y=medv)) + 
@@ -53,9 +55,9 @@ ggplot(data=Boston) +  geom_point(data=Boston, aes(x=lstat, y=medv)) +
   geom_point(data=pred.frame, aes(x=x, y=conf_min),color="red", size=4, alpha=0.5, shape =95) +
   geom_point(data=pred.frame, aes(x=x, y=conf_max),color="red", size=4, alpha=0.5, shape =95)
 
-#let's have a look at the variable correlation with medv, in graphical format
-ggplot(data=medv.corr) + geom_point(aes(x=col, y=correlation)) + geom_hline(yintercept=0, color="blue", size=2)
 
+
+#################################################################
 #second model, including also "rm"
 lm2 <- lm(medv~lstat+rm,data=Boston)
 
@@ -120,6 +122,7 @@ p2 <- ggplot() + geom_point(data = training.data, aes(x=balance, y=income), colo
   geom_point(data = test.data, aes(x=balance, y=income), color='darkred', size=4) 
 grid.arrange(p1, p2, nrow = 1)
 
+# generalized linear model, classification, logistic
 glm1 <- glm(default~balance, data=training.data, family="binomial")
 summary(glm1)
 
@@ -134,6 +137,8 @@ pred3.df <- data.frame(balance=training.data$balance,prediction=pred3,default=tr
 ggplot() + geom_point(data = pred3.df, aes(x=balance, y=prediction, col=default)) + 
   geom_hline(yintercept = 0) + geom_hline(yintercept = 1) + ylim(-15,2) # Plot. 
 
+
+# kinda like gives us the sigmoid
 pred.train.probs = predict(glm1, type = "response") 
 # With type = "response", we get the response variable scale, i.e., the probabilities.
 pred.train.probs.df <- data.frame(balance=training.data$balance,pred.train.probs=pred.train.probs,default=training.data$default) 

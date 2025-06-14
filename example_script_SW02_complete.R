@@ -8,9 +8,13 @@ nr <- 19; y <- 4; #assignment
 while (nr < 42) {print(paste(nr," : we have ",42-nr," still spaces...")); nr=nr+1}
 nr
 
+#importing the library named "tidyverse" 
+#it provideds numerous function to import, manipulate and visualize data
+library(tidyverse)
 
 nr <- as_tibble(c(2,"Test",TRUE))
-nr <- 234
+nr
+
 
 library(readr)
 car_197x_costs <- read_delim("car_197x_costs.csv", 
@@ -20,9 +24,7 @@ car_197x_costs <- read_delim("car_197x_costs.csv",
                              trim_ws = TRUE)
 View(car_197x_costs)
 
-#importing the library named "tidyverse" 
-#it provideds numerous function to import, manipulate and visualize data
-library(tidyverse)
+
 
 #as demonstration, let's import a local dataset into a data.frame
 #remember to change the path accordingly to the location where the data file (here: "auto-mpg.data") is saved
