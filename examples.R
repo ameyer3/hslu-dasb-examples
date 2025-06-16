@@ -20,7 +20,6 @@ V4_xx <- matrix(c(1,1,2,3,1,2,3,5,2,3,5,8),ncol=3)
 V4_xx_bis <- matrix(c(1,1,2,1,2,3,2,3,5,3,5,8),ncol=3)
 V4_xx_bis # 12 elements and 3 cols = 4 rows
 V4_xx[2:4,]/V3_xx # (but not V4_xx[1:4,]/V3_xx or V4_xx/V3_xx ==> Error in V4_xx[1:4, ]/V3_xx : non-conformable arrays)
-# TODO: DO MATRIX HAVE TO BE EXACT SAME DIMENOSNS?
 
 #extend the matrix with a new column
 cbind(V3_xx, c(9, 9, 9))
